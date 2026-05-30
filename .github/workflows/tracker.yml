@@ -2,13 +2,12 @@ name: Trump Trade Tracker
 
 on:
   schedule:
-    - cron: '0 9 * * *'   # runs every morning at 9am to check for new filings
-  workflow_dispatch:        # lets you also trigger it manually anytime
+    - cron: '0 9 * * *'
+  workflow_dispatch:
 
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -32,5 +31,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add known_trades.json
-          git diff --staged --quiet || git commit -m "Update known trades $(date +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "Update known trades"
           git push
