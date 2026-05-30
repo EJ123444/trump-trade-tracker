@@ -1,0 +1,36 @@
+name: Trump Trade Tracker
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # runs every morning at 9am to check for new filings
+  workflow_dispatch:        # lets you also trigger it manually anytime
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run tracker
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: python tracker.py
+
+      - name: Save updated trade list
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add known_trades.json
+          git diff --staged --quiet || git commit -m "Update known trades $(date +'%Y-%m-%d')"
+          git push
