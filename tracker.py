@@ -10,7 +10,7 @@ from email import encoders
 from datetime import datetime, date
 
 KNOWN_TRADES_FILE = "known_trades.json"
-EMAIL_TO = "ejfredericks44@outlook.com"
+EMAIL_TO = "2038147542@vtext.com"
 EMAIL_FROM = os.environ["EMAIL_ADDRESS"]
 EMAIL_PASS = os.environ["EMAIL_PASSWORD"]
 
