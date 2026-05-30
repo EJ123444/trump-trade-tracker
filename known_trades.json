@@ -1,0 +1,326 @@
+[
+  {
+    "ticker": "NVDA",
+    "company": "Nvidia",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-15",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "MSFT",
+    "company": "Microsoft",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-20",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "MSFT",
+    "company": "Microsoft",
+    "sector": "Technology",
+    "type": "Sale",
+    "date": "2026-02-10",
+    "value": "$5M\u2013$25M",
+    "midpoint": 15000000
+  },
+  {
+    "ticker": "AAPL",
+    "company": "Apple",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-22",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-28",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "sector": "Technology",
+    "type": "Sale",
+    "date": "2026-02-10",
+    "value": "$5M\u2013$25M",
+    "midpoint": 15000000
+  },
+  {
+    "ticker": "META",
+    "company": "Meta Platforms",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-30",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "META",
+    "company": "Meta Platforms",
+    "sector": "Technology",
+    "type": "Sale",
+    "date": "2026-02-10",
+    "value": "$5M\u2013$25M",
+    "midpoint": 15000000
+  },
+  {
+    "ticker": "AVGO",
+    "company": "Broadcom",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-18",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "GOOGL",
+    "company": "Alphabet",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-02-03",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "AMD",
+    "company": "AMD",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-02-05",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "INTC",
+    "company": "Intel",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-02-14",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "ORCL",
+    "company": "Oracle",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-01-24",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-02-10",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "DELL",
+    "company": "Dell Technologies",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-03-15",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "MU",
+    "company": "Micron Technology",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-02-18",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "ADBE",
+    "company": "Adobe",
+    "sector": "Technology",
+    "type": "Purchase",
+    "date": "2026-02-08",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "COIN",
+    "company": "Coinbase",
+    "sector": "Crypto",
+    "type": "Purchase",
+    "date": "2026-01-28",
+    "value": "$100K\u2013$250K",
+    "midpoint": 175000
+  },
+  {
+    "ticker": "COIN",
+    "company": "Coinbase",
+    "sector": "Crypto",
+    "type": "Purchase",
+    "date": "2026-02-05",
+    "value": "$100K\u2013$250K",
+    "midpoint": 175000
+  },
+  {
+    "ticker": "HOOD",
+    "company": "Robinhood",
+    "sector": "Crypto",
+    "type": "Purchase",
+    "date": "2026-02-20",
+    "value": "$100K\u2013$250K",
+    "midpoint": 175000
+  },
+  {
+    "ticker": "MARA",
+    "company": "MARA Holdings",
+    "sector": "Crypto",
+    "type": "Purchase",
+    "date": "2026-02-25",
+    "value": "$15K\u2013$50K",
+    "midpoint": 32500
+  },
+  {
+    "ticker": "JPM",
+    "company": "JPMorgan Chase",
+    "sector": "Financials",
+    "type": "Purchase",
+    "date": "2026-01-25",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "GS",
+    "company": "Goldman Sachs",
+    "sector": "Financials",
+    "type": "Purchase",
+    "date": "2026-01-26",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "BAC",
+    "company": "Bank of America",
+    "sector": "Financials",
+    "type": "Purchase",
+    "date": "2026-01-27",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "V",
+    "company": "Visa",
+    "sector": "Financials",
+    "type": "Purchase",
+    "date": "2026-02-01",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "SOFI",
+    "company": "SoFi Technologies",
+    "sector": "Financials",
+    "type": "Purchase",
+    "date": "2026-02-22",
+    "value": "$50K\u2013$100K",
+    "midpoint": 75000
+  },
+  {
+    "ticker": "PLTR",
+    "company": "Palantir Technologies",
+    "sector": "Defense",
+    "type": "Purchase",
+    "date": "2026-01-21",
+    "value": "$100K\u2013$250K",
+    "midpoint": 175000
+  },
+  {
+    "ticker": "PLTR",
+    "company": "Palantir Technologies",
+    "sector": "Defense",
+    "type": "Purchase",
+    "date": "2026-03-20",
+    "value": "$100K\u2013$250K",
+    "midpoint": 175000
+  },
+  {
+    "ticker": "PLTR",
+    "company": "Palantir Technologies",
+    "sector": "Defense",
+    "type": "Sale",
+    "date": "2026-02-15",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  },
+  {
+    "ticker": "BA",
+    "company": "Boeing",
+    "sector": "Defense",
+    "type": "Purchase",
+    "date": "2026-03-05",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "LMT",
+    "company": "Lockheed Martin",
+    "sector": "Defense",
+    "type": "Purchase",
+    "date": "2026-03-08",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "PG",
+    "company": "Procter & Gamble",
+    "sector": "Consumer",
+    "type": "Purchase",
+    "date": "2026-02-12",
+    "value": "$250K\u2013$500K",
+    "midpoint": 375000
+  },
+  {
+    "ticker": "ABNB",
+    "company": "Airbnb",
+    "sector": "Consumer",
+    "type": "Purchase",
+    "date": "2026-02-19",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "DASH",
+    "company": "DoorDash",
+    "sector": "Consumer",
+    "type": "Purchase",
+    "date": "2026-02-21",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "BE",
+    "company": "Bloom Energy",
+    "sector": "Energy",
+    "type": "Purchase",
+    "date": "2026-03-01",
+    "value": "$500K\u2013$1M",
+    "midpoint": 750000
+  },
+  {
+    "ticker": "SPY",
+    "company": "S&P 500 ETF",
+    "sector": "Index",
+    "type": "Purchase",
+    "date": "2026-01-23",
+    "value": "$1M\u2013$5M",
+    "midpoint": 3000000
+  }
+]
