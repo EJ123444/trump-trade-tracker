@@ -141,7 +141,7 @@ Data is sourced from public OGE disclosures. For informational purposes only.
         part.add_header("Content-Disposition", f"attachment; filename=new_trump_trades_{date.today()}.csv")
         msg.attach(part)
 
-    with smtplib.SMTP("smtp-mail.outlook.com", 587) as server:
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
         server.starttls()
         server.login(EMAIL_FROM, EMAIL_PASS)
         server.send_message(msg)
