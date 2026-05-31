@@ -13,6 +13,8 @@ KNOWN_TRADES_FILE = "known_trades.json"
 EMAIL_TO = "2038147542@vtext.com"
 EMAIL_FROM = os.environ["EMAIL_ADDRESS"]
 EMAIL_PASS = os.environ["EMAIL_PASSWORD"]
+ALERT_THRESHOLD = 0.10
+PRICE_CACHE_FILE = "price_cache.json"
 
 # All known trades from OGE filings — script adds new ones automatically
 CURRENT_TRADES = [
@@ -147,6 +149,41 @@ Data is sourced from public OGE disclosures. For informational purposes only.
         server.send_message(msg)
 
     print(f"Email sent with {len(new_trades)} new trades.")
+
+
+def get_price(ticker):
+    try:
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=5d"
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+        data = r.json()
+        closes = data["chart"]["result"][0]["indicators"]["quote"][0]["close"]
+        closes = [c for c in closes if c is not None]
+        return round(closes[-1], 2) if closes else None
+    except:
+        return None
+
+def check_price_alerts():
+    try:
+        with open(PRICE_CACHE_FILE, "r") as f:
+            price_cache = json.load(f)
+    except:
+        price_cache = {}
+    alerts = []
+    buy_tickers = list(set(t["ticker"] for t in CURRENT_TRADES if t["type"] == "Purchase"))
+    for ticker in buy_tickers:
+        current_price = get_price(ticker)
+        if not current_price:
+            continue
+        if ticker in price_cache:
+            old_price = price_cache[ticker]["price"]
+            change = (current_price - old_price) / old_price
+            if abs(change) >= ALERT_THRESHOLD:
+                direction = "UP" if change > 0 else "DOWN"
+                alerts.append({"ticker": ticker, "old_price": old_price, "new_price": current_price, "change_pct": round(change * 100, 1), "direction": direction})
+        price_cache[ticker] = {"price": current_price, "date": str(date.today())}
+    with open(PRICE_CACHE_FILE, "w") as f:
+        json.dump(price_cache, f, indent=2)
+    return alerts
 
 def main():
     print(f"Running Trump Trade Tracker — {datetime.now()}")
