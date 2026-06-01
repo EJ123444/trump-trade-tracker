@@ -9,164 +9,105 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0a;
-  --bg2: #111111;
-  --bg3: #1a1a1a;
-  --border: #2a2a2a;
-  --text: #e8e8e8;
-  --muted: #666;
-  --green: #00d084;
-  --red: #ff4444;
-  --yellow: #ffcc00;
-  --blue: #4488ff;
-  --accent: #ff6b00;
-  --font-mono: 'IBM Plex Mono', monospace;
-  --font-sans: 'IBM Plex Sans', sans-serif;
+  --bg: #0a0a0a; --bg2: #111111; --bg3: #1a1a1a; --border: #2a2a2a;
+  --text: #e8e8e8; --muted: #666; --green: #00d084; --red: #ff4444;
+  --yellow: #ffcc00; --blue: #4488ff; --accent: #ff6b00;
+  --font-mono: 'IBM Plex Mono', monospace; --font-sans: 'IBM Plex Sans', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 14px; min-height: 100vh; }
-
-/* Header */
 .header { border-bottom: 1px solid var(--border); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--bg); z-index: 100; }
-.header-left { display: flex; align-items: center; gap: 12px; }
 .logo { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
 .tagline { font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
 .live-badge { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--green); }
 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-.last-update { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
-
-/* Layout */
 .main { padding: 20px; max-width: 1400px; margin: 0 auto; }
 .grid-top { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
 .grid-main { display: grid; grid-template-columns: 1fr 360px; gap: 20px; margin-bottom: 20px; }
 .grid-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-/* Cards */
 .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; }
 .card-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
 .card-title { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
 .card-body { padding: 16px; }
-
-/* Stat cards */
 .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 16px; }
 .stat-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
 .stat-value { font-family: var(--font-mono); font-size: 24px; font-weight: 600; }
 .stat-sub { font-size: 11px; color: var(--muted); margin-top: 4px; font-family: var(--font-mono); }
-.green { color: var(--green); }
-.red { color: var(--red); }
-.yellow { color: var(--yellow); }
-.blue { color: var(--blue); }
-.accent { color: var(--accent); }
-
-/* Table */
-.data-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 12px; }
+.green { color: var(--green); } .red { color: var(--red); } .yellow { color: var(--yellow); } .blue { color: var(--blue); } .accent { color: var(--accent); }
+.data-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 12px; table-layout: fixed; }
 .data-table th { text-align: left; padding: 8px 12px; color: var(--muted); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid var(--border); font-weight: 500; cursor: pointer; }
-.data-table th:hover { color: var(--text); }
-.data-table td { padding: 9px 12px; border-bottom: 1px solid #1a1a1a; vertical-align: middle; }
+.data-table td { padding: 9px 12px; border-bottom: 1px solid #1a1a1a; vertical-align: middle; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .data-table tr:hover td { background: var(--bg3); }
 .data-table tr:last-child td { border-bottom: none; }
-
-/* Signal badges */
-.signal { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 2px; font-family: var(--font-mono); letter-spacing: 0.5px; }
+.signal { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 2px; font-family: var(--font-mono); letter-spacing: 0.5px; white-space: nowrap; }
 .signal-buy { background: rgba(0,208,132,0.1); color: var(--green); border: 1px solid rgba(0,208,132,0.2); }
 .signal-sell { background: rgba(255,68,68,0.1); color: var(--red); border: 1px solid rgba(255,68,68,0.2); }
 .signal-watch { background: rgba(255,204,0,0.1); color: var(--yellow); border: 1px solid rgba(255,204,0,0.2); }
 .signal-momentum { background: rgba(68,136,255,0.1); color: var(--blue); border: 1px solid rgba(68,136,255,0.2); }
 .signal-conflict { background: rgba(255,107,0,0.1); color: var(--accent); border: 1px solid rgba(255,107,0,0.2); }
-
-/* Ticker */
 .ticker-sym { font-weight: 600; color: var(--text); font-size: 13px; }
-.ticker-name { font-size: 10px; color: var(--muted); margin-top: 1px; font-family: var(--font-sans); }
-.price-change { font-weight: 500; }
-
-/* Trump portfolio specific */
 .trump-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .trump-row:last-child { border-bottom: none; }
 .trump-ticker { font-family: var(--font-mono); font-weight: 600; font-size: 13px; }
 .trump-meta { font-size: 10px; color: var(--muted); font-family: var(--font-mono); margin-top: 2px; }
-.trump-price { text-align: right; }
 .trump-change { font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
 .trump-since { font-size: 10px; color: var(--muted); font-family: var(--font-mono); }
-
-/* Signals feed */
 .signal-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
 .signal-item:last-child { border-bottom: none; }
-.signal-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
 .signal-content { flex: 1; }
 .signal-title { font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
-.signal-desc { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: var(--font-sans); }
-.signal-time { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 3px; }
-
-/* Tabs */
+.signal-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
 .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
 .tab { font-family: var(--font-mono); font-size: 11px; padding: 8px 14px; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; letter-spacing: 0.5px; }
 .tab.active { color: var(--text); border-bottom-color: var(--accent); }
-
-/* Search */
-.search-bar { display: flex; gap: 10px; margin-bottom: 14px; }
-.search-input { flex: 1; background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 7px 12px; color: var(--text); font-family: var(--font-mono); font-size: 12px; outline: none; }
+.search-bar { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.search-input { flex: 1; min-width: 120px; background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 7px 12px; color: var(--text); font-family: var(--font-mono); font-size: 12px; outline: none; }
 .search-input:focus { border-color: var(--accent); }
 .filter-select { background: var(--bg3); border: 1px solid var(--border); border-radius: 3px; padding: 7px 10px; color: var(--text); font-family: var(--font-mono); font-size: 11px; outline: none; }
-
-/* Loading */
 .loading { display: flex; align-items: center; justify-content: center; padding: 40px; color: var(--muted); font-family: var(--font-mono); font-size: 12px; gap: 8px; }
-.spinner { width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.spinner { width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* Win rate bar */
 .win-bar { height: 4px; background: var(--bg3); border-radius: 2px; margin-top: 8px; overflow: hidden; }
 .win-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 1s ease; }
-
-/* Scrollable */
 .scroll-area { max-height: 420px; overflow-y: auto; }
 .scroll-area::-webkit-scrollbar { width: 4px; }
-.scroll-area::-webkit-scrollbar-track { background: transparent; }
 .scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-/* RSI indicator */
 .rsi-bar { display: flex; align-items: center; gap: 8px; }
-.rsi-track { flex: 1; height: 3px; background: var(--bg3); border-radius: 2px; position: relative; }
+.rsi-track { flex: 1; height: 3px; background: var(--bg3); border-radius: 2px; }
 .rsi-fill { height: 100%; border-radius: 2px; }
-.rsi-val { font-family: var(--font-mono); font-size: 11px; min-width: 30px; }
-
-/* Mobile */
+.rsi-val { font-family: var(--font-mono); font-size: 11px; min-width: 28px; }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 9px; padding: 1px 5px; border-radius: 2px; background: rgba(255,107,0,0.15); color: var(--accent); border: 1px solid rgba(255,107,0,0.3); margin-left: 4px; }
+.progress-bar { height: 3px; background: var(--bg3); border-radius: 2px; margin-bottom: 14px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.3s; }
 @media (max-width: 768px) {
   .grid-top { grid-template-columns: repeat(2, 1fr); }
   .grid-main { grid-template-columns: 1fr; }
   .grid-bottom { grid-template-columns: 1fr; }
   .main { padding: 12px; }
-  .header { padding: 12px; }
 }
-
-.tag { display: inline-block; font-family: var(--font-mono); font-size: 9px; padding: 1px 5px; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); margin-left: 4px; }
-.divider { height: 1px; background: var(--border); margin: 12px 0; }
-.section-label { font-family: var(--font-mono); font-size: 9px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-left">
-    <div>
-      <div class="logo">Trump Trade Tracker</div>
-      <div class="tagline">Market Intelligence Dashboard</div>
-    </div>
+  <div>
+    <div class="logo">Trump Trade Tracker</div>
+    <div class="tagline">Market Intelligence Dashboard · Powered by Finnhub</div>
   </div>
   <div style="display:flex;align-items:center;gap:16px;">
     <div class="live-badge"><div class="live-dot"></div> LIVE</div>
-    <div class="last-update" id="last-update">Fetching data...</div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);" id="last-update">Loading...</div>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- Top stats -->
   <div class="grid-top">
     <div class="stat-card">
-      <div class="stat-label">Trump Portfolio</div>
-      <div class="stat-value green" id="stat-winrate">--</div>
-      <div class="stat-sub">win rate</div>
+      <div class="stat-label">Trump Win Rate</div>
+      <div class="stat-value green" id="stat-winrate">--%</div>
+      <div class="stat-sub" id="stat-winrate-sub">loading...</div>
       <div class="win-bar"><div class="win-fill" id="win-fill" style="width:0%"></div></div>
     </div>
     <div class="stat-card">
@@ -177,64 +118,57 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-sans);
     <div class="stat-card">
       <div class="stat-label">Active Signals</div>
       <div class="stat-value accent" id="stat-signals">--</div>
-      <div class="stat-sub">across all tracked stocks</div>
+      <div class="stat-sub">buy/sell/momentum alerts</div>
     </div>
     <div class="stat-card">
-      <div class="stat-label">Nasdaq Today</div>
-      <div class="stat-value" id="stat-nasdaq">--</div>
-      <div class="stat-sub" id="stat-nasdaq-sub">QQQ performance</div>
+      <div class="stat-label">Stocks Loaded</div>
+      <div class="stat-value blue" id="stat-loaded">0/100</div>
+      <div class="stat-sub" id="stat-loaded-sub">fetching via Finnhub...</div>
     </div>
   </div>
 
-  <!-- Main grid -->
   <div class="grid-main">
 
-    <!-- Left: Nasdaq top 100 -->
     <div class="card">
       <div class="card-header">
         <span class="card-title">Nasdaq Top 100 — Live Signals</span>
-        <span class="live-badge" style="font-size:10px;"><div class="live-dot"></div> Prices updating</span>
+        <span class="live-badge" style="font-size:10px;"><div class="live-dot"></div> Finnhub Real-Time</span>
       </div>
       <div class="card-body" style="padding:12px 16px 0;">
+        <div class="progress-bar"><div class="progress-fill" id="load-progress" style="width:0%"></div></div>
         <div class="search-bar">
-          <input class="search-input" type="text" id="search" placeholder="Search ticker or company..." oninput="filterStocks()" />
+          <input class="search-input" type="text" id="search" placeholder="Search ticker..." oninput="filterStocks()" />
           <select class="filter-select" id="signal-filter" onchange="filterStocks()">
             <option value="all">All signals</option>
-            <option value="BUY">Strong Buy</option>
+            <option value="STRONG BUY">Strong Buy</option>
             <option value="MOMENTUM">Momentum</option>
             <option value="WATCH">Watch</option>
             <option value="SELL">Sell</option>
           </select>
           <select class="filter-select" id="sort-select" onchange="filterStocks()">
-            <option value="change">Sort: % Change</option>
-            <option value="signal">Sort: Signal</option>
-            <option value="rsi">Sort: RSI</option>
+            <option value="change">% Change</option>
+            <option value="rsi">RSI</option>
+            <option value="signal">Signal</option>
+            <option value="alpha">A-Z</option>
           </select>
         </div>
-        <div class="scroll-area" style="max-height:500px;">
+        <div class="scroll-area" style="max-height:480px;">
           <table class="data-table">
+            <colgroup><col style="width:110px"><col style="width:90px"><col style="width:80px"><col style="width:100px"><col style="width:130px"><col style="width:70px"></colgroup>
             <thead>
               <tr>
-                <th>Ticker</th>
-                <th>Price</th>
-                <th>Change</th>
-                <th>RSI</th>
-                <th>Signal</th>
-                <th>Vol</th>
+                <th>Ticker</th><th>Price</th><th>Change</th><th>RSI</th><th>Signal</th><th>Vol</th>
               </tr>
             </thead>
             <tbody id="nasdaq-table">
-              <tr><td colspan="6"><div class="loading"><div class="spinner"></div> Fetching live prices...</div></td></tr>
+              <tr><td colspan="6"><div class="loading"><div class="spinner"></div> Connecting to Finnhub...</div></td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- Right: Trump portfolio + signals -->
     <div style="display:flex;flex-direction:column;gap:16px;">
-
-      <!-- Trump portfolio -->
       <div class="card">
         <div class="card-header">
           <span class="card-title">Trump Portfolio</span>
@@ -252,58 +186,47 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-sans);
         </div>
       </div>
 
-      <!-- Live signals feed -->
       <div class="card">
         <div class="card-header">
           <span class="card-title">Signal Feed</span>
           <span style="font-family:var(--font-mono);font-size:10px;color:var(--green);">● LIVE</span>
         </div>
         <div class="card-body" style="padding:8px 16px;">
-          <div class="scroll-area" style="max-height:220px;" id="signal-feed">
-            <div class="loading"><div class="spinner"></div> Loading signals...</div>
+          <div class="scroll-area" style="max-height:200px;" id="signal-feed">
+            <div class="loading"><div class="spinner"></div> Loading...</div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- Bottom grid -->
   <div class="grid-bottom">
-
-    <!-- Leaderboard -->
     <div class="card">
       <div class="card-header">
         <span class="card-title">Trump Trade Leaderboard</span>
-        <span style="font-family:var(--font-mono);font-size:10px;color:var(--muted);">since purchase date</span>
+        <span style="font-family:var(--font-mono);font-size:10px;color:var(--muted);">since purchase · today's move</span>
       </div>
       <div class="card-body" style="padding:0 16px;">
-        <div class="scroll-area" style="max-height:300px;">
+        <div class="scroll-area" style="max-height:320px;">
           <table class="data-table">
-            <thead><tr><th>#</th><th>Ticker</th><th>Bought</th><th>Now</th><th>Return</th><th>Est. P&L</th></tr></thead>
-            <tbody id="leaderboard-table">
-              <tr><td colspan="6"><div class="loading"><div class="spinner"></div></div></td></tr>
-            </tbody>
+            <thead><tr><th style="width:30px">#</th><th>Ticker</th><th>Bought</th><th>Price</th><th>Today</th><th>Est P&L</th></tr></thead>
+            <tbody id="leaderboard-table"><tr><td colspan="6"><div class="loading"><div class="spinner"></div></div></td></tr></tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- Sector breakdown -->
     <div class="card">
-      <div class="card-header">
-        <span class="card-title">Trump Sector Exposure</span>
-      </div>
-      <div class="card-body">
-        <div id="sector-chart"></div>
-      </div>
+      <div class="card-header"><span class="card-title">Trump Sector Exposure</span></div>
+      <div class="card-body" id="sector-chart"><div class="loading"><div class="spinner"></div></div></div>
     </div>
-
   </div>
 
 </div>
 
 <script>
+const FINNHUB_KEY = 'd8ec5fhr01qth3cgkulgd8ec5fhr01qth3cgkum0';
+
 const TRUMP_TRADES = [
   {ticker:"NVDA",name:"Nvidia",sector:"Technology",type:"Purchase",date:"2026-01-15",value:"$1M–$5M",midpoint:3000000},
   {ticker:"MSFT",name:"Microsoft",sector:"Technology",type:"Purchase",date:"2026-01-20",value:"$1M–$5M",midpoint:3000000},
@@ -339,134 +262,151 @@ const TRUMP_TRADES = [
 ];
 
 const NASDAQ_100 = [
-  "AAPL","MSFT","NVDA","AMZN","META","GOOGL","GOOG","TSLA","AVGO","COST",
-  "NFLX","AMD","ADBE","QCOM","INTC","CSCO","TXN","HON","INTU","AMAT",
-  "BKNG","SBUX","GILD","MDLZ","LRCX","REGN","ADI","MELI","SNPS","KLAC",
-  "CDNS","ASML","MU","PANW","ORLY","ABNB","CRWD","FTNT","MRVL","WDAY",
-  "PCAR","KDP","DXCM","AEP","CTAS","ODFL","ROST","IDXX","GEHC","FANG",
-  "FAST","MRNA","BIIB","ILMN","ON","ZS","TEAM","MNST","VRSK","GFS",
-  "DLTR","TTWO","PAYX","ANSS","SGEN","WBA","ALGN","ENPH","LCID","RIVN",
-  "DDOG","OKTA","ZM","DOCU","HOOD","COIN","PLTR","SOFI","MARA","DASH",
-  "DELL","ORCL","CRM","NOW","UBER","LYFT","SPOT","RBLX","SNAP","PINS",
-  "PYPL","SQ","AFRM","UPST","LULU","EBAY","ETSY","W","CHWY","ZG"
+  "AAPL","MSFT","NVDA","AMZN","META","GOOGL","TSLA","AVGO","COST","NFLX",
+  "AMD","ADBE","QCOM","CSCO","TXN","HON","INTU","AMAT","BKNG","SBUX",
+  "GILD","MDLZ","LRCX","REGN","ADI","MELI","SNPS","KLAC","CDNS","ASML",
+  "MU","PANW","ORLY","ABNB","CRWD","FTNT","MRVL","WDAY","PCAR","KDP",
+  "DXCM","AEP","CTAS","ODFL","ROST","IDXX","GEHC","FANG","FAST","MRNA",
+  "BIIB","ILMN","ON","ZS","TEAM","MNST","VRSK","GFS","DLTR","TTWO",
+  "PAYX","ANSS","WBA","ALGN","ENPH","DDOG","OKTA","ZM","DOCU","HOOD",
+  "COIN","PLTR","SOFI","MARA","DASH","DELL","ORCL","CRM","NOW","UBER",
+  "SPOT","RBLX","SNAP","PINS","PYPL","AFRM","LULU","EBAY","ETSY","CHWY",
+  "INTC","GOOGL","BAC","JPM","GS","V","PG","BA","LMT","SPY"
 ];
 
 const CONFLICT_NOTES = {
-  "DELL": "Bought day before Trump publicly endorsed Dell AI infrastructure deal",
-  "PLTR": "9+ purchases; Palantir holds $1.3B+ in Pentagon contracts under Trump admin",
-  "COIN": "Purchased amid Trump signing pro-crypto executive orders Jan 23",
-  "HOOD": "Named in Trump Accounts program rollout announcement",
-  "INTC": "Bought after US CHIPS Act funding announcement for Intel fabs",
+  "DELL":"Bought day before Trump endorsed Dell AI infrastructure deal",
+  "PLTR":"9+ purchases; $1.3B+ Pentagon contracts under Trump admin",
+  "COIN":"Purchased amid Trump signing pro-crypto executive orders",
+  "HOOD":"Named in Trump Accounts program rollout",
+  "INTC":"Bought after US CHIPS Act funding announcement for Intel",
 };
 
 let priceCache = {};
 let allStocks = [];
 let currentTab = 'buys';
+let loadedCount = 0;
 
-async function fetchPrice(ticker) {
+async function finnhubQuote(ticker) {
   try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10d`;
-    const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
-    const j = await r.json();
-    const data = JSON.parse(j.contents);
-    const result = data?.chart?.result?.[0];
-    if (!result) return null;
-    const closes = result.indicators?.quote?.[0]?.close?.filter(Boolean) || [];
-    const volumes = result.indicators?.quote?.[0]?.volume?.filter(Boolean) || [];
-    const price = closes[closes.length - 1];
-    const prev = closes[closes.length - 2];
-    const change = price && prev ? ((price - prev) / prev * 100) : 0;
-    // Simple RSI approximation
-    let rsi = 50;
-    if (closes.length >= 7) {
-      const gains = [], losses = [];
-      for (let i = 1; i < closes.length; i++) {
-        const d = closes[i] - closes[i-1];
-        if (d > 0) gains.push(d); else losses.push(Math.abs(d));
-      }
-      const avgGain = gains.reduce((a,b)=>a+b,0)/(gains.length||1);
-      const avgLoss = losses.reduce((a,b)=>a+b,0)/(losses.length||1);
-      rsi = avgLoss === 0 ? 100 : Math.round(100 - (100 / (1 + avgGain/avgLoss)));
-    }
-    const vol = volumes[volumes.length-1];
-    const avgVol = volumes.reduce((a,b)=>a+b,0)/(volumes.length||1);
-    return { price, prev, change: Math.round(change*100)/100, rsi, vol, avgVol, closes };
+    const r = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${FINNHUB_KEY}`);
+    const d = await r.json();
+    if (!d.c || d.c === 0) return null;
+    const change = d.pc > 0 ? ((d.c - d.pc) / d.pc * 100) : 0;
+    return { price: d.c, prev: d.pc, change: Math.round(change * 100) / 100, high: d.h, low: d.l, open: d.o };
   } catch(e) { return null; }
 }
 
+async function finnhubCandles(ticker) {
+  try {
+    const to = Math.floor(Date.now()/1000);
+    const from = to - 86400 * 20;
+    const r = await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${ticker}&resolution=D&from=${from}&to=${to}&token=${FINNHUB_KEY}`);
+    const d = await r.json();
+    if (d.s !== 'ok' || !d.c?.length) return null;
+    return d.c;
+  } catch(e) { return null; }
+}
+
+function calcRSI(closes) {
+  if (!closes || closes.length < 7) return 50;
+  const gains = [], losses = [];
+  for (let i = 1; i < closes.length; i++) {
+    const diff = closes[i] - closes[i-1];
+    if (diff > 0) gains.push(diff); else losses.push(Math.abs(diff));
+  }
+  const avgGain = gains.reduce((a,b)=>a+b,0) / (gains.length || 1);
+  const avgLoss = losses.reduce((a,b)=>a+b,0) / (losses.length || 1);
+  if (avgLoss === 0) return 100;
+  return Math.round(100 - (100 / (1 + avgGain/avgLoss)));
+}
+
 function getSignal(change, rsi, isTrumpBuy) {
-  if (rsi > 70 && change > 2) return { label: '🟢 STRONG BUY', cls: 'signal-buy' };
-  if (change > 3 && rsi < 65) return { label: '📈 MOMENTUM', cls: 'signal-momentum' };
-  if (rsi < 35) return { label: '👀 WATCH', cls: 'signal-watch' };
-  if (change < -3 || rsi > 75) return { label: '🔴 SELL', cls: 'signal-sell' };
-  if (isTrumpBuy && change > 1) return { label: '🟢 BUY', cls: 'signal-buy' };
-  return { label: '— HOLD', cls: '' };
+  if (rsi >= 70 && change >= 2) return { label: '🟢 STRONG BUY', cls: 'signal-buy' };
+  if (change >= 2.5 && rsi < 70) return { label: '📈 MOMENTUM', cls: 'signal-momentum' };
+  if (rsi <= 35) return { label: '👀 WATCH', cls: 'signal-watch' };
+  if (change <= -3 || rsi >= 78) return { label: '🔴 SELL', cls: 'signal-sell' };
+  if (isTrumpBuy && change >= 0.5) return { label: '🟢 BUY', cls: 'signal-buy' };
+  return { label: 'HOLD', cls: '' };
 }
 
-function fmtPrice(p) { return p ? `$${p.toFixed(2)}` : '—'; }
-function fmtChg(c) {
+function fmtP(p) { return p ? `$${p.toFixed(2)}` : '—'; }
+function fmtC(c) {
   if (c === null || c === undefined) return '<span style="color:var(--muted)">—</span>';
-  const cls = c >= 0 ? 'green' : 'red';
-  return `<span class="${cls}">${c >= 0 ? '+' : ''}${c.toFixed(2)}%</span>`;
+  return `<span style="color:${c>=0?'var(--green)':'var(--red)';}">${c>=0?'+':''}${c.toFixed(2)}%</span>`;
 }
-
-function fmtVol(v) {
-  if (!v) return '—';
-  if (v > 1e9) return (v/1e9).toFixed(1)+'B';
-  if (v > 1e6) return (v/1e6).toFixed(1)+'M';
-  return (v/1e3).toFixed(0)+'K';
+function fmtPL(mid, chg) {
+  if (!chg) return '—';
+  const pl = mid * (chg/100);
+  return `<span style="color:${pl>=0?'var(--green)':'var(--red)'}">${pl>=0?'+$':'-$'}${Math.abs(pl).toLocaleString('en-US',{maximumFractionDigits:0})}</span>`;
 }
 
 const trumpBuyTickers = new Set(TRUMP_TRADES.filter(t=>t.type==='Purchase').map(t=>t.ticker));
 
-async function loadNasdaq() {
-  const tbody = document.getElementById('nasdaq-table');
-  const batch = 10;
-  allStocks = [];
+async function loadAllStocks() {
+  const unique = [...new Set(NASDAQ_100)];
+  loadedCount = 0;
+  document.getElementById('stat-loaded').textContent = `0/${unique.length}`;
 
-  for (let i = 0; i < NASDAQ_100.length; i += batch) {
-    const slice = NASDAQ_100.slice(i, i+batch);
-    await Promise.all(slice.map(async ticker => {
-      const d = await fetchPrice(ticker);
-      if (d) {
-        priceCache[ticker] = d;
+  // Fetch in batches of 5 with small delay to respect rate limits
+  const batchSize = 5;
+  for (let i = 0; i < unique.length; i += batchSize) {
+    const batch = unique.slice(i, i + batchSize);
+    await Promise.all(batch.map(async ticker => {
+      const quote = await finnhubQuote(ticker);
+      if (quote) {
+        const candles = await finnhubCandles(ticker);
+        const rsi = calcRSI(candles);
         const isTrump = trumpBuyTickers.has(ticker);
-        const sig = getSignal(d.change, d.rsi, isTrump);
-        allStocks.push({ ticker, price: d.price, change: d.change, rsi: d.rsi, vol: d.vol, avgVol: d.avgVol, signal: sig, isTrump });
+        const sig = getSignal(quote.change, rsi, isTrump);
+        priceCache[ticker] = { ...quote, rsi, candles };
+        allStocks.push({ ticker, ...quote, rsi, signal: sig, isTrump });
+        loadedCount++;
+        const pct = Math.round(loadedCount / unique.length * 100);
+        document.getElementById('load-progress').style.width = pct + '%';
+        document.getElementById('stat-loaded').textContent = `${loadedCount}/${unique.length}`;
+        if (loadedCount <= 3) document.getElementById('stat-loaded-sub').textContent = 'loading...';
+        renderNasdaqTable();
       }
     }));
-    renderNasdaqTable();
+    await new Promise(r => setTimeout(r, 300));
   }
+
+  document.getElementById('stat-loaded-sub').textContent = 'all stocks loaded ✓';
+  document.getElementById('load-progress').style.background = 'var(--green)';
   updateStats();
+  renderSignalFeed();
+  renderLeaderboard();
 }
 
 function renderNasdaqTable() {
-  const search = document.getElementById('search').value.toLowerCase();
-  const sigFilter = document.getElementById('signal-filter').value;
-  const sortBy = document.getElementById('sort-select').value;
+  const search = document.getElementById('search')?.value.toLowerCase() || '';
+  const sigF = document.getElementById('signal-filter')?.value || 'all';
+  const sortBy = document.getElementById('sort-select')?.value || 'change';
+  const rsiColor = r => r > 70 ? 'var(--red)' : r < 35 ? 'var(--green)' : 'var(--muted)';
 
   let stocks = [...allStocks].filter(s => {
-    const matchSearch = s.ticker.toLowerCase().includes(search);
-    const matchSig = sigFilter === 'all' || s.signal.label.includes(sigFilter);
-    return matchSearch && matchSig;
+    const ms = s.ticker.toLowerCase().includes(search);
+    const mf = sigF === 'all' || s.signal.label.includes(sigF);
+    return ms && mf;
   });
 
   if (sortBy === 'change') stocks.sort((a,b) => b.change - a.change);
   else if (sortBy === 'rsi') stocks.sort((a,b) => b.rsi - a.rsi);
   else if (sortBy === 'signal') stocks.sort((a,b) => a.signal.label.localeCompare(b.signal.label));
+  else if (sortBy === 'alpha') stocks.sort((a,b) => a.ticker.localeCompare(b.ticker));
 
   const tbody = document.getElementById('nasdaq-table');
-  if (!stocks.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted);font-family:var(--font-mono);font-size:12px;">No results</td></tr>'; return; }
-
-  const rsiColor = r => r > 70 ? 'var(--red)' : r < 35 ? 'var(--green)' : 'var(--muted)';
+  if (!stocks.length && allStocks.length > 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:20px;color:var(--muted);font-family:var(--font-mono);font-size:12px;">No results</td></tr>';
+    return;
+  }
 
   tbody.innerHTML = stocks.map(s => `
     <tr>
-      <td>
-        <div class="ticker-sym">${s.ticker}${s.isTrump ? '<span class="tag">TRUMP</span>' : ''}</div>
-      </td>
-      <td style="font-family:var(--font-mono);">${fmtPrice(s.price)}</td>
-      <td>${fmtChg(s.change)}</td>
+      <td><span class="ticker-sym">${s.ticker}</span>${s.isTrump ? '<span class="tag">T</span>' : ''}</td>
+      <td style="font-family:var(--font-mono);">${fmtP(s.price)}</td>
+      <td>${fmtC(s.change)}</td>
       <td>
         <div class="rsi-bar">
           <span class="rsi-val" style="color:${rsiColor(s.rsi)}">${s.rsi}</span>
@@ -474,57 +414,38 @@ function renderNasdaqTable() {
         </div>
       </td>
       <td>${s.signal.cls ? `<span class="signal ${s.signal.cls}">${s.signal.label}</span>` : `<span style="color:var(--muted);font-size:11px;font-family:var(--font-mono);">HOLD</span>`}</td>
-      <td style="font-family:var(--font-mono);font-size:11px;color:var(--muted);">${fmtVol(s.vol)}</td>
+      <td style="color:var(--muted);font-size:11px;">—</td>
     </tr>
   `).join('');
 }
 
 function filterStocks() { renderNasdaqTable(); }
 
-async function loadTrumpPortfolio() {
-  const buys = TRUMP_TRADES.filter(t => t.type === 'Purchase');
-  const sells = TRUMP_TRADES.filter(t => t.type === 'Sale');
-  const flags = TRUMP_TRADES.filter(t => CONFLICT_NOTES[t.ticker]);
-
-  // Fetch prices for Trump tickers
-  const tickers = [...new Set(TRUMP_TRADES.map(t=>t.ticker))];
-  await Promise.all(tickers.map(async t => {
-    if (!priceCache[t]) priceCache[t] = await fetchPrice(t);
-  }));
-
-  renderTrumpTab();
-  renderLeaderboard();
-  renderSignalFeed();
-  renderSectorChart();
-}
-
 function renderTrumpTab() {
   const container = document.getElementById('trump-portfolio');
-  let trades;
-  if (currentTab === 'buys') trades = TRUMP_TRADES.filter(t=>t.type==='Purchase');
-  else if (currentTab === 'sells') trades = TRUMP_TRADES.filter(t=>t.type==='Sale');
-  else trades = TRUMP_TRADES.filter(t=>CONFLICT_NOTES[t.ticker]);
+  let trades = currentTab === 'buys' ? TRUMP_TRADES.filter(t=>t.type==='Purchase')
+    : currentTab === 'sells' ? TRUMP_TRADES.filter(t=>t.type==='Sale')
+    : TRUMP_TRADES.filter(t=>CONFLICT_NOTES[t.ticker]);
 
-  const uniqueTickers = [...new Map(trades.map(t=>[t.ticker,t])).values()];
+  const unique = [...new Map(trades.map(t=>[t.ticker,t])).values()];
 
-  container.innerHTML = uniqueTickers.map(t => {
+  container.innerHTML = unique.map(t => {
     const pd = priceCache[t.ticker];
-    const chg = pd ? pd.change : null;
-    const chgClass = chg >= 0 ? 'green' : 'red';
-    const flag = CONFLICT_NOTES[t.ticker] ? `<div style="font-size:10px;color:var(--accent);margin-top:3px;">⚠ ${CONFLICT_NOTES[t.ticker].substring(0,50)}...</div>` : '';
+    const chg = pd?.change;
+    const flag = currentTab === 'flags' && CONFLICT_NOTES[t.ticker]
+      ? `<div style="font-size:10px;color:var(--accent);margin-top:3px;">⚠ ${CONFLICT_NOTES[t.ticker]}</div>` : '';
     return `
       <div class="trump-row">
         <div>
           <div class="trump-ticker">${t.ticker} <span style="font-size:10px;color:var(--muted);font-weight:400;">${t.name}</span></div>
           <div class="trump-meta">${t.date} · ${t.value}</div>
-          ${currentTab === 'flags' ? flag : ''}
+          ${flag}
         </div>
-        <div class="trump-price">
-          <div class="trump-change ${chgClass}">${pd ? fmtPrice(pd.price) : '—'}</div>
-          <div class="trump-since">${chg !== null ? (chg>=0?'+':'')+chg.toFixed(2)+'% today' : '—'}</div>
+        <div style="text-align:right;">
+          <div class="trump-change" style="color:${chg>=0?'var(--green)':'var(--red)'}">${pd ? fmtP(pd.price) : '—'}</div>
+          <div class="trump-since">${chg!=null?(chg>=0?'+':'')+chg.toFixed(2)+'% today':'loading...'}</div>
         </div>
-      </div>
-    `;
+      </div>`;
   }).join('');
 }
 
@@ -539,120 +460,93 @@ function switchTab(tab) {
 function renderLeaderboard() {
   const buys = TRUMP_TRADES.filter(t=>t.type==='Purchase');
   const unique = [...new Map(buys.map(t=>[t.ticker,t])).values()];
-
-  const withData = unique.map(t => {
-    const pd = priceCache[t.ticker];
-    return { ...t, currentPrice: pd?.price, change: pd?.change };
-  }).filter(t => t.currentPrice).sort((a,b) => b.change - a.change);
+  const withData = unique.map(t => ({ ...t, pd: priceCache[t.ticker] }))
+    .filter(t => t.pd?.change != null)
+    .sort((a,b) => b.pd.change - a.pd.change);
 
   const tbody = document.getElementById('leaderboard-table');
   tbody.innerHTML = withData.map((t, i) => {
-    const chgClass = t.change >= 0 ? 'green' : 'red';
-    const pl = t.midpoint * (t.change/100);
-    const plStr = (pl >= 0 ? '+$' : '-$') + Math.abs(pl).toLocaleString('en-US', {maximumFractionDigits:0});
-    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}`;
-    return `
-      <tr>
-        <td style="color:var(--muted)">${medal}</td>
-        <td><span class="ticker-sym">${t.ticker}</span></td>
-        <td style="font-family:var(--font-mono);font-size:11px;">${t.value}</td>
-        <td style="font-family:var(--font-mono);">${fmtPrice(t.currentPrice)}</td>
-        <td><span class="${chgClass}" style="font-family:var(--font-mono);font-weight:600;">${t.change>=0?'+':''}${t.change.toFixed(2)}%</span></td>
-        <td><span class="${chgClass}" style="font-family:var(--font-mono);font-size:11px;">${plStr}</span></td>
-      </tr>
-    `;
+    const medal = i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`;
+    return `<tr>
+      <td style="color:var(--muted)">${medal}</td>
+      <td><span class="ticker-sym">${t.ticker}</span></td>
+      <td style="font-size:11px;color:var(--muted);">${t.value}</td>
+      <td style="font-family:var(--font-mono);">${fmtP(t.pd.price)}</td>
+      <td>${fmtC(t.pd.change)}</td>
+      <td>${fmtPL(t.midpoint, t.pd.change)}</td>
+    </tr>`;
   }).join('');
 }
 
 function renderSignalFeed() {
   const signals = [];
   allStocks.forEach(s => {
-    if (s.signal.cls && s.signal.label !== '— HOLD') {
-      signals.push({ ticker: s.ticker, signal: s.signal, change: s.change, price: s.price, isTrump: s.isTrump });
-    }
+    if (s.signal.cls) signals.push({ ticker: s.ticker, signal: s.signal, change: s.change, price: s.price, isTrump: s.isTrump });
   });
-  TRUMP_TRADES.filter(t=>CONFLICT_NOTES[t.ticker]).forEach(t => {
-    signals.push({ ticker: t.ticker, signal: { label: '⚠ CONFLICT', cls: 'signal-conflict' }, note: CONFLICT_NOTES[t.ticker], isTrump: true });
+  TRUMP_TRADES.filter(t=>CONFLICT_NOTES[t.ticker] && t.type==='Purchase').forEach(t => {
+    if (!signals.find(s=>s.ticker===t.ticker && s.signal.label.includes('CONFLICT')))
+      signals.push({ ticker: t.ticker, signal: { label: '⚠ CONFLICT', cls: 'signal-conflict' }, note: CONFLICT_NOTES[t.ticker], isTrump: true });
   });
-
-  const feed = document.getElementById('signal-feed');
-  if (!signals.length) { feed.innerHTML = '<div style="color:var(--muted);font-family:var(--font-mono);font-size:12px;padding:10px 0;">No active signals</div>'; return; }
-
-  feed.innerHTML = signals.slice(0, 20).map(s => `
-    <div class="signal-item">
-      <div class="signal-content">
-        <div class="signal-title">${s.ticker} <span class="signal ${s.signal.cls}" style="margin-left:6px;">${s.signal.label}</span>${s.isTrump ? '<span class="tag" style="margin-left:4px;">TRUMP</span>':''}</div>
-        <div class="signal-desc">${s.note || (s.change !== undefined ? `${s.change>=0?'+':''}${s.change?.toFixed(2)}% today · $${s.price?.toFixed(2)}` : '')}</div>
-      </div>
-    </div>
-  `).join('');
 
   document.getElementById('stat-signals').textContent = signals.length;
+  const feed = document.getElementById('signal-feed');
+  if (!signals.length) { feed.innerHTML = '<div style="color:var(--muted);font-family:var(--font-mono);font-size:12px;padding:10px 0;">No active signals yet</div>'; return; }
+  feed.innerHTML = signals.slice(0,25).map(s => `
+    <div class="signal-item">
+      <div class="signal-content">
+        <div class="signal-title">${s.ticker} <span class="signal ${s.signal.cls}">${s.signal.label}</span>${s.isTrump?'<span class="tag">TRUMP</span>':''}</div>
+        <div class="signal-desc" style="color:var(--muted);font-size:11px;">${s.note||(s.change!=null?(s.change>=0?'+':'')+s.change.toFixed(2)+'% · '+fmtP(s.price):'')}</div>
+      </div>
+    </div>`).join('');
 }
 
 function renderSectorChart() {
   const sectors = {};
-  TRUMP_TRADES.filter(t=>t.type==='Purchase').forEach(t => {
-    sectors[t.sector] = (sectors[t.sector]||0) + t.midpoint;
-  });
+  TRUMP_TRADES.filter(t=>t.type==='Purchase').forEach(t => { sectors[t.sector]=(sectors[t.sector]||0)+t.midpoint; });
   const total = Object.values(sectors).reduce((a,b)=>a+b,0);
-  const sorted = Object.entries(sectors).sort((a,b)=>b[1]-a[1]);
-  const colors = ['var(--accent)','var(--blue)','var(--green)','var(--yellow)','var(--red)','var(--muted)'];
-
-  document.getElementById('sector-chart').innerHTML = sorted.map(([sector, val], i) => {
-    const pct = Math.round(val/total*100);
-    return `
-      <div style="margin-bottom:12px;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-          <span style="font-family:var(--font-mono);font-size:11px;">${sector}</span>
-          <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted);">${pct}% · $${(val/1e6).toFixed(1)}M</span>
-        </div>
-        <div style="height:6px;background:var(--bg3);border-radius:2px;overflow:hidden;">
-          <div style="height:100%;width:${pct}%;background:${colors[i%colors.length]};border-radius:2px;transition:width 1s ease;"></div>
-        </div>
+  const colors = ['var(--accent)','var(--blue)','var(--green)','var(--yellow)','var(--red)','#9966ff','var(--muted)'];
+  document.getElementById('sector-chart').innerHTML = Object.entries(sectors).sort((a,b)=>b[1]-a[1]).map(([s,v],i)=>{
+    const pct = Math.round(v/total*100);
+    return `<div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+        <span style="font-family:var(--font-mono);font-size:11px;">${s}</span>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted);">${pct}% · $${(v/1e6).toFixed(1)}M est.</span>
       </div>
-    `;
+      <div style="height:6px;background:var(--bg3);border-radius:2px;overflow:hidden;">
+        <div style="height:100%;width:${pct}%;background:${colors[i%colors.length]};border-radius:2px;transition:width 1.2s ease;"></div>
+      </div>
+    </div>`;
   }).join('');
 }
 
 function updateStats() {
-  const trumpBuys = TRUMP_TRADES.filter(t=>t.type==='Purchase');
-  const unique = [...new Map(trumpBuys.map(t=>[t.ticker,t])).values()];
-  const withData = unique.filter(t=>priceCache[t.ticker]?.change !== null && priceCache[t.ticker]?.change !== undefined);
-  const wins = withData.filter(t=>priceCache[t.ticker].change > 0);
-  const winRate = withData.length ? Math.round(wins.length/withData.length*100) : 0;
+  const buys = TRUMP_TRADES.filter(t=>t.type==='Purchase');
+  const unique = [...new Map(buys.map(t=>[t.ticker,t])).values()];
+  const withData = unique.filter(t=>priceCache[t.ticker]?.change!=null);
+  const wins = withData.filter(t=>priceCache[t.ticker].change>0);
+  const wr = withData.length ? Math.round(wins.length/withData.length*100) : 0;
+  document.getElementById('stat-winrate').textContent = wr+'%';
+  document.getElementById('stat-winrate-sub').textContent = `${wins.length}/${withData.length} positions up today`;
+  document.getElementById('win-fill').style.width = wr+'%';
 
-  document.getElementById('stat-winrate').textContent = winRate + '%';
-  document.getElementById('win-fill').style.width = winRate + '%';
-
-  const best = withData.sort((a,b)=>priceCache[b.ticker].change - priceCache[a.ticker].change)[0];
+  const best = withData.sort((a,b)=>priceCache[b.ticker].change-priceCache[a.ticker].change)[0];
   if (best) {
-    document.getElementById('stat-best').textContent = '+' + priceCache[best.ticker].change.toFixed(1) + '%';
-    document.getElementById('stat-best-name').textContent = best.ticker + ' · ' + best.name;
+    document.getElementById('stat-best').textContent = '+'+priceCache[best.ticker].change.toFixed(1)+'%';
+    document.getElementById('stat-best-name').textContent = best.ticker+' · '+best.name;
   }
-
-  const qqq = priceCache['QQQ'] || allStocks.find(s=>s.ticker==='QQQ');
-  if (qqq) {
-    const chg = qqq.change || qqq.change;
-    document.getElementById('stat-nasdaq').textContent = (chg>=0?'+':'') + chg?.toFixed(2) + '%';
-    document.getElementById('stat-nasdaq').className = 'stat-value ' + (chg>=0?'green':'red');
-    document.getElementById('stat-nasdaq-sub').textContent = 'QQQ · Nasdaq 100 ETF';
-  }
-
-  document.getElementById('last-update').textContent = 'Updated ' + new Date().toLocaleTimeString();
+  document.getElementById('last-update').textContent = 'Updated '+new Date().toLocaleTimeString();
 }
 
 async function init() {
-  await Promise.all([loadTrumpPortfolio(), loadNasdaq()]);
-  updateStats();
-  renderSignalFeed();
-  // Refresh every 5 minutes
+  renderSectorChart();
+  await loadAllStocks();
+  renderTrumpTab();
+  renderLeaderboard();
   setInterval(async () => {
-    priceCache = {};
-    allStocks = [];
-    await Promise.all([loadTrumpPortfolio(), loadNasdaq()]);
-    updateStats();
-    renderSignalFeed();
+    priceCache = {}; allStocks = [];
+    await loadAllStocks();
+    renderTrumpTab();
+    renderLeaderboard();
   }, 5 * 60 * 1000);
 }
 
