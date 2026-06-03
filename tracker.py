@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, date
 
-PHONE      = "YOURNUMBER@vtext.com"
+PHONE      = "2038147542@vtext.com"
 EMAIL_FROM = os.environ["EMAIL_ADDRESS"]
 EMAIL_PASS = os.environ["EMAIL_PASSWORD"]
 FINNHUB    = "d8ec5fhr01qth3cgkulgd8ec5fhr01qth3cgkum0"
