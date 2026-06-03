@@ -14,7 +14,7 @@ KNOWN_FILE = "known_trades.json"
 PRICE_FILE = "price_cache.json"
 SIG_FILE   = "signal_cache.json"
 MODE       = os.environ.get("RUN_MODE", "signals")
-TEST_MODE  = true
+TEST_MODE  = True
 
 WATCHLIST = [
     "NVDA","MSFT","AAPL","AMZN","META","AVGO","GOOGL","AMD","INTC","ORCL",
