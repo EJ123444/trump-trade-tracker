@@ -14,6 +14,7 @@ KNOWN_FILE = "known_trades.json"
 PRICE_FILE = "price_cache.json"
 SIG_FILE   = "signal_cache.json"
 MODE       = os.environ.get("RUN_MODE", "signals")
+TEST_MODE  = true
 
 WATCHLIST = [
     "NVDA","MSFT","AAPL","AMZN","META","AVGO","GOOGL","AMD","INTC","ORCL",
@@ -63,7 +64,8 @@ def fh(path):
     try:
         r = requests.get(
             f"https://finnhub.io/api/v1{path}&token={FINNHUB}",
-            timeout=10
+            timeout=15,
+            headers={"User-Agent": "Mozilla/5.0"}
         )
         return r.json()
     except:
@@ -140,16 +142,21 @@ def calc_sma(closes, p):
 
 
 def send_text(msg):
-    m = MIMEMultipart()
-    m["From"] = EMAIL_FROM
-    m["To"] = PHONE
-    m["Subject"] = ""
-    m.attach(MIMEText(msg[:1500], "plain"))
-    with smtplib.SMTP("smtp.gmail.com", 587) as s:
-        s.starttls()
-        s.login(EMAIL_FROM, EMAIL_PASS)
-        s.send_message(m)
-    print(f"Text sent: {msg[:60]}...")
+    try:
+        m = MIMEMultipart()
+        m["From"] = EMAIL_FROM
+        m["To"] = PHONE
+        m["Subject"] = ""
+        m.attach(MIMEText(msg[:1500], "plain"))
+        with smtplib.SMTP("smtp.gmail.com", 587) as s:
+            s.starttls()
+            s.login(EMAIL_FROM, EMAIL_PASS)
+            s.send_message(m)
+        print(f"Text sent: {msg[:60]}...")
+        return True
+    except Exception as e:
+        print(f"Text failed: {e}")
+        return False
 
 
 def is_must_buy(ticker, quote, closes, rec):
@@ -157,7 +164,7 @@ def is_must_buy(ticker, quote, closes, rec):
     macd_bull = calc_macd_bullish(closes)
     sma50 = calc_sma(closes, 50)
     price = quote["price"]
-    bull = (rec.get("strongBuy", 0) + rec.get("buy", 0))
+    bull = rec.get("strongBuy", 0) + rec.get("buy", 0)
     total = bull + rec.get("hold", 0) + rec.get("sell", 0) + rec.get("strongSell", 0)
     analyst_bull = (bull / total > 0.6) if total > 0 else False
     score = 50
@@ -257,12 +264,12 @@ def run_signals():
             )
             sig_cache[sig_key] = True
 
-        if abs(q["change"]) >= 0.1:
+        if abs(q["change"]) >= 5:
             move_key = f"move_{ticker}_{today}"
             if move_key not in sig_cache:
                 icon = "🚀" if q["change"] > 0 else "💥"
                 alerts.append(
-                    f"{icon} MOVE: {ticker}\n"
+                    f"{icon} BIG MOVE: {ticker}\n"
                     f"{q['change']:+.2f}% today\n"
                     f"Price: ${q['price']:.2f}"
                 )
@@ -380,6 +387,10 @@ def run_weekly():
 
 def main():
     print(f"Mode: {MODE} — {datetime.now()}")
+    if TEST_MODE:
+        print("TEST MODE — sending test text")
+        send_text(f"TRACKER ONLINE — {date.today()} — system working!")
+        return
     if MODE == "premarket":
         run_premarket()
     elif MODE == "signals":
