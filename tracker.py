@@ -227,7 +227,7 @@ def run_signals():
             signal_cache[sig_key] = True
 
         # Big price move
-        if abs(q["change"]) >= 5:
+        if abs(q["change"]) >= 0.1:
             move_key = f"move_{ticker}_{date.today()}"
             if move_key not in signal_cache:
                 icon = "🚀" if q["change"] > 0 else "💥"
