@@ -2,23 +2,41 @@ name: Trump Trade Tracker
 
 on:
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '30 13 * * 1-5'   # 9:30 AM ET pre-market (Mon-Fri)
+    - cron: '0 15 * * 1-5'    # 11 AM ET signal scan
+    - cron: '0 17 * * 1-5'    # 1 PM ET signal scan
+    - cron: '0 20 * * 1-5'    # 4 PM ET end of day
+    - cron: '0 21 * * 5'      # 5 PM ET Friday weekly recap
   workflow_dispatch:
 
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: pip install requests
+
+      - name: Determine run mode
+        id: mode
+        run: |
+          HOUR=$(date -u +%H)
+          MIN=$(date -u +%M)
+          DOW=$(date -u +%u)
+          if [ "$HOUR" = "13" ] && [ "$MIN" = "30" ]; then
+            echo "RUN_MODE=premarket" >> $GITHUB_ENV
+          elif [ "$HOUR" = "20" ]; then
+            echo "RUN_MODE=daily" >> $GITHUB_ENV
+          elif [ "$HOUR" = "21" ] && [ "$DOW" = "5" ]; then
+            echo "RUN_MODE=weekly" >> $GITHUB_ENV
+          else
+            echo "RUN_MODE=signals" >> $GITHUB_ENV
+          fi
 
       - name: Run tracker
         env:
@@ -26,10 +44,10 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: python tracker.py
 
-      - name: Save updated trade list
+      - name: Save state
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add known_trades.json
-          git diff --staged --quiet || git commit -m "Update known trades"
+          git add known_trades.json price_cache.json signal_cache.json || true
+          git diff --staged --quiet || git commit -m "Update state $(date +'%Y-%m-%d %H:%M')"
           git push
