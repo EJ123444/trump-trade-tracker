@@ -272,8 +272,9 @@ def run_signals():
         send_text(alert)
         print(f"Alert sent: {alert[:50]}")
 
-    if not alerts:
-        print("No signals triggered.")
+   if not alerts:
+    print("No signals triggered.")
+    send_text(f"TRACKER ALIVE {date.today()} — no signals today")
 
 def run_daily_close():
     """4 PM — end of day portfolio summary"""
