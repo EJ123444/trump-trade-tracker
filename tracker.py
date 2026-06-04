@@ -313,6 +313,7 @@ def run_signals():
 
     if not alerts:
         print("No signals triggered.")
+        send_text(f"SCAN COMPLETE {date.today()} — no major signals today")
 
 
 def run_daily_close():
