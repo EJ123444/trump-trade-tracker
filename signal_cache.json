@@ -58,5 +58,11 @@
   "move_COIN_2026-06-04": true,
   "mb_NVDA_2026-06-04": true,
   "mb_TSLA_2026-06-04": true,
-  "mb_NVDA_2026-06-05": true
+  "mb_NVDA_2026-06-05": true,
+  "move_NVDA_2026-06-05": true,
+  "move_TSLA_2026-06-05": true,
+  "move_COIN_2026-06-05": true,
+  "move_AMD_2026-06-05": true,
+  "chg10_AMD_2026-06-05": true,
+  "move_META_2026-06-05": true
 }
