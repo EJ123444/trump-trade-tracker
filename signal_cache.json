@@ -179,5 +179,8 @@
   "move_PLTR_2026-09-02": true,
   "mb_PLTR_2026-09-02": true,
   "move_PLTR_2026-09-03": true,
-  "mb_PLTR_2026-09-03": true
+  "mb_PLTR_2026-09-03": true,
+  "move_TSLA_2026-09-03": true,
+  "move_COIN_2026-09-03": true,
+  "chg10_COIN_2026-09-03": true
 }
